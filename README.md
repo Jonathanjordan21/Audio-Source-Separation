@@ -1,6 +1,5 @@
 # Audio-Source-Separation
 ## Wave-U-Net Model
-<h2>Audio Source Separation project based on Wave-U-Net </h2>
 <h3>Paper Source : https://arxiv.org/abs/1806.03185</h3>
 
 The Model Consists of 1D Convolutional layers with U-Net Architechture
