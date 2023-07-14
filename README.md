@@ -1,4 +1,4 @@
-# Audio Source Separation project based on Wave-U-Net 
+# Audio Source Separation based on Wave-U-Net 
 ## Wave-U-Net Model
 <h3>Paper Source : https://arxiv.org/abs/1806.03185</h3>
 
