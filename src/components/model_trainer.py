@@ -8,10 +8,10 @@ import sys
 
 class ModelTrainerConfig:
     def __init__(
-        self,lr=1e-4,betas=(0.9,0.999),epochs=21,batch_size=10,
+        self,lr=1e-4,betas=(0.9,0.999),epochs=21,
         device='cuda' if torch.cuda.is_available() else 'cpu'
     ):
-        self.lr,self.betas,self.epochs,self.batch_size = lr,betas,epochs,batch_size
+        self.lr,self.betas,self.epochs = lr,betas,epochs
         self.device = device
         self.model_dir = os.path.join('artifacts', 'model.pth')
 class ModelTrainer:
@@ -26,7 +26,6 @@ class ModelTrainer:
         try :
             # device = 'cuda' if torch.cuda.is_available() else 'cpu'
             epochs = self.config.epochs
-            batch = self.config.batch_size
 
             mse = nn.MSELoss()
             optimizer = torch.optim.Adam(model.parameters(),lr=self.config.lr, betas=self.config.betas)
@@ -42,10 +41,10 @@ class ModelTrainer:
                     optimizer.zero_grad()
 
                     # Make predictions for this batch
-                    inputs = inputs.unsqueeze(1).to(self.device).to(torch.float)
+                    inputs = inputs.unsqueeze(1).to(self.config.device).to(torch.float)
                     # outputs = model(inputs)
                     out = model(inputs).to(torch.float)
-                    target = labels.to(self.device).to(torch.float)
+                    target = labels.to(self.config.device).to(torch.float)
 
 
                     # Compute the loss and its gradients
