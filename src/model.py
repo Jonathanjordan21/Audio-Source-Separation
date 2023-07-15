@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-from utils import calculate_conv_size
+from src.utils import calculate_conv_size
 
 # Constants According to the Paper
 F_c = 24

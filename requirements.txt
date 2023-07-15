@@ -2,3 +2,4 @@ librosa==0.9.0
 numpy
 torch
 musdb
+stempeg

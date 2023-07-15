@@ -1,8 +1,8 @@
 
-from components.data_preparation import DataPreparation
-from model import WaveUNet
+from src.components.data_preparation import DataPreparation
+from src.model import WaveUNet
 import torch
-from components.model_trainer import ModelTrainer
+from src.components.model_trainer import ModelTrainer
 
 
 if __name__ == '__main__':
