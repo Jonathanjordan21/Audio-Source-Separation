@@ -39,8 +39,6 @@ class WaveUNet(nn.Module):
 
     shapes.reverse()
     for i,shape in zip(reversed(range(1,layers+1)), shapes[1:]):
-
-      print(i, curr_channel+shape[0])
       self.up = self.up.append(self.up_block(curr_channel+shape[0], F_c*i, f_u))
       curr_channel = F_c*i
 
@@ -74,7 +72,6 @@ class WaveUNet(nn.Module):
     # upsample frequency
     for up,out in zip(self.up, down_out[:-1]):
       inter = F.interpolate(x, mode='linear', scale_factor=2)
-      print(out.shape, inter.shape, out.shape)
       x=torch.cat((inter[:, :, :out.shape[-1]], out),1)
       x = up(x)
     out = down_out[-1]

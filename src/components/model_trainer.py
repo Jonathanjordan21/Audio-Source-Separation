@@ -7,8 +7,12 @@ import sys
 
 
 class ModelTrainerConfig:
-    def __init__(self,lr=1e-4,betas=(0.9,0.999),epochs=21,batch_size=10):
+    def __init__(
+        self,lr=1e-4,betas=(0.9,0.999),epochs=21,batch_size=10,
+        device='cuda' if torch.cuda.is_available() else 'cpu'
+    ):
         self.lr,self.betas,self.epochs,self.batch_size = lr,betas,epochs,batch_size
+        self.device = device
         self.model_dir = os.path.join('artifacts', 'model.pth')
 class ModelTrainer:
     def __init__(self, config=None):
@@ -20,7 +24,7 @@ class ModelTrainer:
     def train(self, model, dataloader):
 
         try :
-            device = 'cuda' if torch.cuda.is_available() else 'cpu'
+            # device = 'cuda' if torch.cuda.is_available() else 'cpu'
             epochs = self.config.epochs
             batch = self.config.batch_size
 
@@ -38,10 +42,10 @@ class ModelTrainer:
                     optimizer.zero_grad()
 
                     # Make predictions for this batch
-                    inputs = inputs.unsqueeze(1).to(device).to(torch.float)
+                    inputs = inputs.unsqueeze(1).to(self.device).to(torch.float)
                     # outputs = model(inputs)
                     out = model(inputs).to(torch.float)
-                    target = labels.to(device).to(torch.float)
+                    target = labels.to(self.device).to(torch.float)
 
 
                     # Compute the loss and its gradients
@@ -54,10 +58,12 @@ class ModelTrainer:
 
                     # Gather data and report
                     running_loss += loss.item()
-                    if i % 1000 == 999:
-                        # print('batch {} loss: {}'.format(i + 1, ))
-                        logging.info('batch {} loss: {}'.format(i + 1, running_loss))
-                        running_loss = 0.
+                    logging.info('batch {} loss: {}'.format(i + 1, loss.item()))
+                    # # running_loss = 0.
+                if epochs % 2 == 0:
+                    # print('batch {} loss: {}'.format(i + 1, ))
+                    logging.info('epoch {} loss: {}'.format(epoch + 1, running_loss))
+                    running_loss = 0.
                         
             os.makedirs('artifacts', exist_ok=True)
             logging.info("Training has been finished. Saving model....")

@@ -8,14 +8,14 @@ from src.exception import CustomException
 import sys, os
 
 class DataPreparationConfig:
-    def __init__(self, batch_size=64, shuffle=True):
+    def __init__(self, batch_size=32, shuffle=True):
         self.batch_size, self.shuffle = batch_size, shuffle
 
 
 class DataPreparation():
-    def __init__(self, batch_size=64, shuffle=True, config=None):
+    def __init__(self, config=None):
         if config == None:
-            self.config = DataPreparationConfig(batch_size, shuffle)
+            self.config = DataPreparationConfig()
         else :
             self.config = config
         
@@ -51,16 +51,23 @@ class DataPreparation():
             X = np.array(X_l)
             Y = np.array(Y_l)
 
+            dataloader = self.build_dataloader(X, Y)
             logging.info("Data Transformation process is finished")
             
-            return self.build_dataloader(X, Y)
+            return dataloader
         except Exception as err:
             CustomException(err, sys)
 
                     
     def build_dataloader(self,X, Y):
-        X_train = torch.from_numpy(X)
-        Y_train = torch.from_numpy(Y)
-        dataset = torch.utils.data.TensorDataset(Y_train, X_train)
-        dataloader = torch.utils.data.DataLoader(dataset, batch_size=64, shuffle=True)
-        return dataloader
+        try :
+            logging.info("Building Dataloader...")
+            X_train = torch.from_numpy(X)
+            Y_train = torch.from_numpy(Y)
+            dataset = torch.utils.data.TensorDataset(X_train, Y_train)
+            dataloader = torch.utils.data.DataLoader(dataset, batch_size=self.config.batch_size, shuffle=True)
+            logging.info("Dataloader has been built successfully!")
+            return dataloader
+        except Exception as err:
+            CustomException(err, sys)
+        
