@@ -59,7 +59,7 @@ class ModelTrainer:
                     # running_loss += loss.item()
                     # logging.info('batch {} loss: {}'.format(i + 1, loss.item()))
                     # # running_loss = 0.
-                if epochs % 2 == 0:
+                if epoch % 2 == 0:
                     # print('batch {} loss: {}'.format(i + 1, ))
                     logging.info('epoch {} loss: {}'.format(epoch + 1, running_loss))
                     running_loss = 0.
