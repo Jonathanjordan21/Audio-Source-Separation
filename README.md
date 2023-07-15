@@ -19,7 +19,7 @@ Take a look on the model's architechture in the paper :<br>
 <br>
 
 ### Limitations
-The model's performance is not as good as other extra large Audio Source Separation models like OpenUnMix and HDEMUCS. Despite of that, this model is very feasible to run locally on mobile application after applying some optimization for mobile apps like Quantization and Pruning considering the relatively small size of the model (compared to other models).
+The model's performance is not as good as the other extra large Audio Source Separation models like OpenUnMix and HDEMUCS. Despite of that, this model is very feasible to run locally on mobile application after applying some optimization for mobile apps like Quantization and Pruning considering the relatively small size of the model (compared to other models).
 
 ## MUSDB Dataset
 The MUSDB Dataset provides a collection of multitrack music recordings specifically designed for source separation research. It consists of a diverse musical genre and provides supervised ground truth annotations for each track which is delivered in isolated sources (vocals, drums, bass, accompaniment, and others)
