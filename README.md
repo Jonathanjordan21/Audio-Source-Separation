@@ -14,10 +14,9 @@ the sampling rate of an audio data
 The Decoder Layers are upsampled by simple linear interpolation with sigmoid activation function for smoothing 
 <br><br>
 
-Take a look of the model's architechture in the paper :<br>
+Take a look on the model's architechture in the paper :<br>
 ![Kiku](media/arch.png)
 <br>
-I had to apply several modifications for the model in order to tackle run out of memory problem.
 
 ### Limitations
 The model's performance is not as good as other extra large Audio Source Separation models like OpenUnMix and HDEMUCS. Despite of that, this model is very feasible to run locally on mobile application after applying some optimization for mobile apps like Quantization and Pruning considering the relatively small size of the model (compared to other models).
