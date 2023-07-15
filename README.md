@@ -14,7 +14,7 @@ the sampling rate of an audio data
 The Decoder Layers are upsampled by simple linear interpolation with sigmoid activation function for smoothing 
 <br><br>
 
-Take a look of the model's architechture in the paper :
+Take a look of the model's architechture in the paper :<br>
 ![Kiku](media/arch.png)
 <br>
 I had to apply several modifications for the model in order to tackle run out of memory problem.
