@@ -57,8 +57,8 @@ class ModelTrainer:
                     optimizer.step()
 
                     # Gather data and report
-                    running_loss += loss.item()
-                    logging.info('batch {} loss: {}'.format(i + 1, loss.item()))
+                    # running_loss += loss.item()
+                    # logging.info('batch {} loss: {}'.format(i + 1, loss.item()))
                     # # running_loss = 0.
                 if epochs % 2 == 0:
                     # print('batch {} loss: {}'.format(i + 1, ))
