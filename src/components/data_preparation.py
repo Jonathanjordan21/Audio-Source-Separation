@@ -25,8 +25,8 @@ class DataPreparation():
         try :
             os.makedirs("artifacts", exist_ok=True)
             logging.info("Data Ingestion has started. Downloading the dataset from MUSDB repository")
-            self.train = musdb.DB(download=True, subsets='train', root=os.path.join("artifacts", "train"))
-            self.test = musdb.DB(download=True, subsets='test', root=os.path.join("artifacts", "test"))
+            self.train = musdb.DB(download=True, subsets='train', root="artifacts")
+            self.test = musdb.DB(download=True, subsets='test', root="artifacts")
             logging.info("MUSDB dataset has been successfully downloaded!")
             logging.info("Data Ingestion process is finished")
         except Exception as err:
