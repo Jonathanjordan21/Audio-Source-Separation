@@ -6,7 +6,7 @@ import os
 class ModelTrainerConfig:
     def __init__(self,lr=1e-4,betas=(0.9,0.999),epochs=21,batch_size=10):
         self.lr,self.betas,self.epochs,self.batch_size = lr,betas,epochs,batch_size
-        self.model_dir = os.path.join('artifact', 'model.pth')
+        self.model_dir = os.path.join('artifacts', 'model.pth')
 class ModelTrainer:
     def __init__(self, config=None):
         if config!=None:
@@ -51,6 +51,6 @@ class ModelTrainer:
                     print('batch {} loss: {}'.format(i + 1, ))
                     running_loss = 0.
                     
-        os.mkdir('artifact', exist_ok=True)
+        os.makedirs('artifacts', exist_ok=True)
         torch.save(model.state_dict(), self.config.model_dir)
         
